@@ -1,0 +1,90 @@
+{
+  "color": {
+    "light": {
+      "background": {
+        "primary": "#ffffff",
+        "secondary": "#fafafa",
+        "tertiary": "#f5f5f5"
+      },
+      "surface": {
+        "primary": "#ffffff",
+        "secondary": "#f5f5f5",
+        "overlay": "rgba(255, 255, 255, 0.9)"
+      },
+      "text": {
+        "primary": "#171717",
+        "secondary": "#525252",
+        "tertiary": "#a3a3a3",
+        "inverse": "#ffffff"
+      },
+      "border": {
+        "primary": "#e5e5e5",
+        "secondary": "#d4d4d4",
+        "focus": "#171717"
+      },
+      "brand": {
+        "primary": "#171717",
+        "contrast": "#ffffff"
+      },
+      "accent": {
+        "primary": "#0ea5e9",
+        "contrast": "#ffffff"
+      },
+      "success": {
+        "primary": "#22c55e",
+        "contrast": "#ffffff"
+      },
+      "warning": {
+        "primary": "#f59e0b",
+        "contrast": "#ffffff"
+      },
+      "danger": {
+        "primary": "#ef4444",
+        "contrast": "#ffffff"
+      }
+    },
+    "dark": {
+      "background": {
+        "primary": "#0a0a0a",
+        "secondary": "#171717",
+        "tertiary": "#262626"
+      },
+      "surface": {
+        "primary": "#171717",
+        "secondary": "#262626",
+        "overlay": "rgba(23, 23, 23, 0.9)"
+      },
+      "text": {
+        "primary": "#fafafa",
+        "secondary": "#a3a3a3",
+        "tertiary": "#525252",
+        "inverse": "#0a0a0a"
+      },
+      "border": {
+        "primary": "#404040",
+        "secondary": "#525252",
+        "focus": "#fafafa"
+      },
+      "brand": {
+        "primary": "#fafafa",
+        "contrast": "#0a0a0a"
+      },
+      "accent": {
+        "primary": "#38bdf8",
+        "contrast": "#0a0a0a"
+      },
+      "success": {
+        "primary": "#4ade80",
+        "contrast": "#0a0a0a"
+      },
+      "warning": {
+        "primary": "#fbbf24",
+        "contrast": "#0a0a0a"
+      },
+      "danger": {
+        "primary": "#f87171",
+        "contrast": "#0a0a0a"
+      }
+    }
+  }
+}

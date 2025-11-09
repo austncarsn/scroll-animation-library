@@ -1,0 +1,86 @@
+{
+  "duration": {
+    "instant": "80ms",
+    "fast": "120ms",
+    "normal": "180ms",
+    "slow": "240ms",
+    "slower": "320ms",
+    "long": "480ms",
+    "xlong": "640ms"
+  },
+  "easing": {
+    "standard": {
+      "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "description": "Standard ease for most transitions"
+    },
+    "emphasized": {
+      "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+      "description": "Emphasized ease for important state changes"
+    },
+    "exit": {
+      "value": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+      "description": "Exit animations and dismissals"
+    },
+    "springLite": {
+      "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+      "description": "Subtle spring effect"
+    },
+    "sine": {
+      "value": "cubic-bezier(0.445, 0.05, 0.55, 0.95)",
+      "description": "Sine wave easing"
+    }
+  },
+  "scroll": {
+    "parallaxSlow": {
+      "transform": "translateY(calc(var(--scroll) * -20%))",
+      "reducedMotion": "none"
+    },
+    "parallaxMedium": {
+      "transform": "translateY(calc(var(--scroll) * -35%))",
+      "reducedMotion": "none"
+    },
+    "parallaxFast": {
+      "transform": "translateY(calc(var(--scroll) * -50%))",
+      "reducedMotion": "none"
+    },
+    "fadeIn": {
+      "opacity": "var(--scroll)",
+      "reducedMotion": "1"
+    },
+    "scaleIn": {
+      "transform": "scale(calc(0.8 + var(--scroll) * 0.2))",
+      "reducedMotion": "scale(1)"
+    },
+    "rotateIn": {
+      "transform": "rotate(calc(var(--scroll) * 90deg))",
+      "reducedMotion": "rotate(0)"
+    }
+  },
+  "spring": {
+    "bouncy": {
+      "type": "spring",
+      "stiffness": 400,
+      "damping": 30
+    },
+    "smooth": {
+      "type": "spring",
+      "stiffness": 300,
+      "damping": 25
+    },
+    "gentle": {
+      "type": "spring",
+      "stiffness": 200,
+      "damping": 20
+    }
+  },
+  "reducedMotion": {
+    "enabled": "@media (prefers-reduced-motion: reduce)",
+    "rules": {
+      "disableParallax": true,
+      "disableRotations": true,
+      "disableScaleTransforms": true,
+      "allowFadeOnly": true,
+      "maxDuration": "120ms"
+    }
+  }
+}
