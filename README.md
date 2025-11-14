@@ -15,8 +15,6 @@
 
 This project showcases advanced scroll-driven animation techniques designed for modern web portfolios and high-end digital experiences. Each variant demonstrates professional animation patterns with full accessibility compliance and responsive design.
 
-**[View Live Demo](www.scroll-animation-library.vercel.app)** | **[Documentation](#-documentation)** | **[Animation Variants](#-animation-variants)**
-
 ### Key Features
 
 - **19 Unique Animation Variants** — From parallax grids to morphing blobs
