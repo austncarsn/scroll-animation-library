@@ -1,68 +1,77 @@
 export function Footer() {
   return (
-    <footer className="relative bg-neutral-900 text-white py-16 px-8">
+    <footer className="relative bg-neutral-900 text-white py-20 px-6 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              {/* Bear icon SVG */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
-                <circle cx="8" cy="6" r="2" fill="currentColor" />
-                <circle cx="16" cy="6" r="2" fill="currentColor" />
-                <path 
-                  d="M12 4C9.79 4 8 5.79 8 8V14C8 16.21 9.79 18 12 18C14.21 18 16 16.21 16 14V8C16 5.79 14.21 4 12 4Z" 
-                  fill="currentColor" 
-                />
-                <circle cx="10" cy="11" r="1" fill="#171717" />
-                <circle cx="14" cy="11" r="1" fill="#171717" />
-                <path d="M10 14 Q12 15 14 14" stroke="#171717" strokeWidth="1" fill="none" />
-              </svg>
-              <span className="tracking-tight text-xl">Scroll Innovations</span>
-            </div>
-            <p className="text-sm text-neutral-400">
-              Advanced scroll-driven animations for modern web portfolios
+            <h3 className="text-2xl md:text-3xl italic mb-4 tracking-tight">
+              Scroll—Driven Animations
+            </h3>
+            <p className="text-base text-neutral-400 leading-relaxed">
+              Advanced scroll-driven animations for modern web portfolios. Built with accessibility and performance in mind.
             </p>
           </div>
 
-          {/* Resources */}
+          {/* Technical Stack */}
           <div>
-            <h4 className="mb-4 tracking-wide text-sm">RESOURCES</h4>
-            <ul className="space-y-2 text-sm text-neutral-400">
-              <li><a href="#" className="hover:text-white transition-colors">CSS Documentation</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Motion React</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">GSAP ScrollTrigger</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">View Transitions API</a></li>
+            <h4 className="mb-6 text-xs tracking-[0.2em] uppercase font-['Inter'] text-neutral-500">
+              Technical Stack
+            </h4>
+            <ul className="space-y-3 text-sm text-neutral-400">
+              <li className="hover:text-white transition-colors cursor-default">React + TypeScript</li>
+              <li className="hover:text-white transition-colors cursor-default">Motion (Framer Motion)</li>
+              <li className="hover:text-white transition-colors cursor-default">Tailwind CSS v4</li>
+              <li className="hover:text-white transition-colors cursor-default">Instrument Serif + Inter</li>
             </ul>
           </div>
 
-          {/* Technical */}
+          {/* CSS Features */}
           <div>
-            <h4 className="mb-4 tracking-wide text-sm">IMPLEMENTATION</h4>
-            <ul className="space-y-2 text-sm text-neutral-400">
-              <li>animation-timeline: scroll()</li>
-              <li>@supports (animation-range)</li>
-              <li>prefers-reduced-motion</li>
-              <li>cubic-bezier easing</li>
+            <h4 className="mb-6 text-xs tracking-[0.2em] uppercase font-['Inter'] text-neutral-500">
+              CSS Features
+            </h4>
+            <ul className="space-y-3 text-sm text-neutral-400">
+              <li className="hover:text-white transition-colors cursor-default">animation-timeline: scroll()</li>
+              <li className="hover:text-white transition-colors cursor-default">@supports (animation-range)</li>
+              <li className="hover:text-white transition-colors cursor-default">prefers-reduced-motion</li>
+              <li className="hover:text-white transition-colors cursor-default">Custom easing curves</li>
             </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-neutral-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500">
-            <p>© 2025 Scroll Innovations. Optimized for portfolio integration.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">GitHub</a>
-              <a href="#" className="hover:text-white transition-colors">CodePen</a>
-              <a href="#" className="hover:text-white transition-colors">austincarson.dev</a>
+        <div className="border-t border-neutral-800 pt-10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+            <p className="text-neutral-500 font-['Inter']">
+              © 2025 Created by <span className="text-white italic font-['Instrument_Serif']">Austin Carson</span>
+            </p>
+            <div className="flex gap-8 text-neutral-400">
+              <a href="#parallax" className="hover:text-white transition-colors font-['Inter'] text-xs tracking-wider uppercase">
+                View Variants
+              </a>
+              <span className="text-neutral-700">•</span>
+              <span className="text-xs tracking-wider uppercase font-['Inter']">
+                19 Variants
+              </span>
             </div>
           </div>
 
-          {/* Browser support note */}
-          <div className="mt-8 p-4 bg-neutral-800 rounded-sm text-xs text-neutral-400">
-            <strong className="text-neutral-300">Browser Support:</strong> Native scroll-driven animations work in Chromium browsers (Chrome 115+, Edge 115+). 
-            GSAP ScrollTrigger provides fallbacks for Firefox and Safari. Include: <code className="text-neutral-300">@supports (animation-timeline: scroll())</code>
+          {/* Browser Support Note */}
+          <div className="mt-10 p-6 bg-neutral-800/50 border border-neutral-800 rounded-sm">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-1.5 h-1.5 bg-neutral-500 rounded-full mt-2"></div>
+              <div className="text-xs text-neutral-400 leading-relaxed">
+                <strong className="text-neutral-300 font-['Inter'] tracking-wide uppercase">Browser Support:</strong> 
+                <span className="block mt-2">
+                  Native scroll-driven animations work in Chromium browsers (Chrome 115+, Edge 115+). 
+                  Motion provides polyfills for Firefox and Safari. All animations respect 
+                  <code className="mx-1 px-2 py-0.5 bg-neutral-900 text-neutral-300 rounded font-mono">prefers-reduced-motion</code> 
+                  for accessibility.
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
