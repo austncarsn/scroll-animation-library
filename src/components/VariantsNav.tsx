@@ -68,43 +68,43 @@ export function VariantsNav() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-neutral-200">
-        <div className="max-w-7xl mx-auto px-8 py-4">
-          <div className="flex items-center justify-between mb-4">
+      <nav className="hidden lg:block sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-8 py-6">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <span className="text-sm tracking-wider text-neutral-900">SCROLL VARIANTS</span>
+              <span className="text-xs tracking-[0.2em] uppercase font-['Inter'] text-neutral-900">Animation Variants</span>
               {activeVariant && (
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-neutral-400">{activeVariant.number}</span>
-                  <ChevronRight className="w-3 h-3 text-neutral-400" />
-                  <span className="text-xs text-neutral-600">{activeVariant.name}</span>
-                  <span className="text-xs text-neutral-400 ml-2 px-2 py-0.5 bg-neutral-100 rounded-full">
+                <div className="flex items-center gap-3 mt-2">
+                  <span className="text-2xl text-neutral-400">{activeVariant.number}</span>
+                  <ChevronRight className="w-4 h-4 text-neutral-300" />
+                  <span className="text-base text-neutral-900 italic">{activeVariant.name}</span>
+                  <span className="text-xs tracking-[0.15em] uppercase font-['Inter'] text-neutral-400 ml-3 px-3 py-1 border border-neutral-200 rounded-full">
                     {activeVariant.category}
                   </span>
                 </div>
               )}
             </div>
-            <span className="text-xs text-neutral-400">
+            <span className="text-sm font-['Inter'] text-neutral-400">
               {variants.findIndex(v => v.id === activeSection) + 1} / {variants.length}
             </span>
           </div>
           
-          <div className="flex gap-1 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
             {variants.map((variant) => (
               <motion.button
                 key={variant.id}
                 onClick={() => scrollToVariant(variant.id)}
                 onMouseEnter={() => setHoveredItem(variant.id)}
                 onMouseLeave={() => setHoveredItem(null)}
-                className="relative flex-shrink-0 px-3 py-2 text-xs transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="relative flex-shrink-0 px-4 py-3 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="flex items-center gap-2">
-                  <span className={`transition-colors ${
+                <div className="flex items-center gap-3">
+                  <span className={`text-xl transition-colors ${
                     activeSection === variant.id 
                       ? 'text-neutral-900' 
-                      : 'text-neutral-400 hover:text-neutral-600'
+                      : 'text-neutral-300 hover:text-neutral-600'
                   }`}>
                     {variant.number}
                   </span>
@@ -113,7 +113,7 @@ export function VariantsNav() {
                       initial={{ opacity: 0, width: 0 }}
                       animate={{ opacity: 1, width: 'auto' }}
                       exit={{ opacity: 0, width: 0 }}
-                      className="text-neutral-600 whitespace-nowrap overflow-hidden"
+                      className="text-sm text-neutral-600 whitespace-nowrap overflow-hidden italic"
                     >
                       {variant.name}
                     </motion.span>
@@ -122,7 +122,7 @@ export function VariantsNav() {
                 {activeSection === variant.id && (
                   <motion.div
                     layoutId="activeIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-neutral-900"
+                    className="absolute bottom-0 left-0 right-0 h-px bg-neutral-900"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -133,21 +133,21 @@ export function VariantsNav() {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-neutral-200">
-        <div className="px-6 py-4 flex items-center justify-between">
+      <nav className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-neutral-200">
+        <div className="px-6 py-5 flex items-center justify-between">
           <div className="flex-1">
-            <span className="text-sm tracking-wider text-neutral-900">VARIANTS</span>
+            <span className="text-xs tracking-[0.2em] uppercase font-['Inter'] text-neutral-900">Variants</span>
             {activeVariant && (
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-xs text-neutral-400">{activeVariant.number}</span>
-                <span className="text-xs text-neutral-600">{activeVariant.name}</span>
+              <div className="flex items-center gap-2 mt-1.5">
+                <span className="text-lg text-neutral-400">{activeVariant.number}</span>
+                <span className="text-sm text-neutral-900 italic">{activeVariant.name}</span>
               </div>
             )}
           </div>
           
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 hover:bg-neutral-100 rounded-lg transition-colors"
+            className="p-2.5 hover:bg-neutral-100 rounded-md transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -167,7 +167,7 @@ export function VariantsNav() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+                className="fixed inset-0 bg-black/10 backdrop-blur-sm"
                 style={{ top: '73px' }}
               />
               
@@ -178,31 +178,31 @@ export function VariantsNav() {
                 transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 className="absolute top-full left-0 right-0 bg-white border-b border-neutral-200 shadow-2xl max-h-[calc(100vh-73px)] overflow-y-auto"
               >
-                <div className="p-4 grid grid-cols-1 gap-1">
+                <div className="p-6 grid grid-cols-1 gap-1">
                   {variants.map((variant) => (
                     <motion.button
                       key={variant.id}
                       onClick={() => scrollToVariant(variant.id)}
-                      className={`flex items-center justify-between p-4 rounded-lg text-left transition-all ${
+                      className={`flex items-center justify-between p-5 rounded-md text-left transition-all ${
                         activeSection === variant.id
                           ? 'bg-neutral-900 text-white'
                           : 'hover:bg-neutral-50'
                       }`}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <div className="flex items-center gap-4">
-                        <span className={`text-sm ${
+                      <div className="flex items-center gap-5">
+                        <span className={`text-xl ${
                           activeSection === variant.id ? 'text-white/60' : 'text-neutral-400'
                         }`}>
                           {variant.number}
                         </span>
                         <div>
-                          <div className={`text-sm ${
+                          <div className={`text-base italic ${
                             activeSection === variant.id ? 'text-white' : 'text-neutral-900'
                           }`}>
                             {variant.name}
                           </div>
-                          <div className={`text-xs mt-0.5 ${
+                          <div className={`text-xs tracking-[0.15em] uppercase font-['Inter'] mt-1 ${
                             activeSection === variant.id ? 'text-white/60' : 'text-neutral-400'
                           }`}>
                             {variant.category}

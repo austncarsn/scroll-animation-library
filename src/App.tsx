@@ -2,6 +2,7 @@ import { useRef, Suspense, lazy } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ScrollProgress } from './components/ScrollProgress';
 import { VariantsNav } from './components/VariantsNav';
+import { ArrowDown } from 'lucide-react';
 
 // Lazy load components for better performance
 const ParallaxGrid = lazy(() => import('./components/ParallaxGrid').then(m => ({ default: m.ParallaxGrid })));
@@ -28,14 +29,20 @@ const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.
 // Loading component
 function LoadingFallback() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50">
-      <div className="flex flex-col items-center gap-4">
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="flex flex-col items-center gap-6">
         <motion.div
-          className="w-12 h-12 border-2 border-neutral-300 border-t-neutral-900 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+          className="w-16 h-16 border border-neutral-900"
+          animate={{ 
+            rotate: 360,
+            borderRadius: ['0%', '50%', '0%']
+          }}
+          transition={{ 
+            rotate: { duration: 2, repeat: Infinity, ease: 'linear' },
+            borderRadius: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+          }}
         />
-        <span className="text-sm text-neutral-500">Loading...</span>
+        <span className="text-xs tracking-[0.2em] uppercase font-['Inter'] text-neutral-400">Loading Experience</span>
       </div>
     </div>
   );
@@ -49,8 +56,9 @@ export default function App() {
     offset: ["start start", "end start"]
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '15%']);
+  const lineWidth = useTransform(scrollYProgress, [0, 0.3], ['0%', '100%']);
 
   // Image collections for each variant
   const images = {
@@ -138,178 +146,198 @@ export default function App() {
     <div className="bg-white">
       <ScrollProgress />
       
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-50 to-neutral-100">
+      {/* Hero Section - Completely Redesigned */}
+      <section ref={heroRef} className="relative min-h-[140vh] flex items-center justify-center overflow-hidden bg-neutral-50">
         <motion.div 
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="text-center px-8"
+          style={{ opacity: heroOpacity, y: heroY }}
+          className="relative z-10 text-center px-6 md:px-12 max-w-7xl mx-auto py-32"
         >
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-12"
+          >
+            <span className="inline-block text-xs tracking-[0.3em] uppercase font-['Inter'] text-neutral-500 border border-neutral-300 px-5 py-2.5 rounded-full">
+              Portfolio Archive
+            </span>
+          </motion.div>
+
+          {/* Main Heading */}
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[8rem] md:text-[12rem] leading-none tracking-tighter text-neutral-900"
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="text-7xl md:text-9xl lg:text-[11rem] leading-[0.9] tracking-tight text-neutral-900 mb-12"
           >
-            <div>SCROLL</div>
-            <div className="text-[rgb(255,66,0)]">INNOVATIONS</div>
+            <div className="italic">Scroll—Driven</div>
+            <div className="mt-4 italic">Animations</div>
           </motion.h1>
+
+          {/* Decorative Line */}
+          <motion.div 
+            className="relative h-px bg-neutral-900 mb-16 max-w-2xl mx-auto"
+            style={{ width: lineWidth }}
+          />
           
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="mt-8 text-xl text-neutral-600 tracking-wide"
+            transition={{ delay: 0.8, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl md:text-2xl lg:text-3xl leading-relaxed text-neutral-600 max-w-4xl mx-auto mb-20"
           >
-            Advanced CSS scroll-driven animation techniques
+            A comprehensive library of nineteen scroll-driven animation patterns, 
+            crafted for modern web experiences with accessibility at the forefront.
           </motion.p>
 
+          {/* Creator Credit */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="mt-12 flex items-center justify-center gap-2 text-neutral-400"
+            transition={{ delay: 1, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-20"
           >
-            <span className="text-sm">Scroll to explore</span>
-            <motion.svg 
-              width="20" 
-              height="20" 
-              viewBox="0 0 24 24" 
-              fill="none"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            <p className="text-sm md:text-base text-neutral-500 mb-2 font-['Inter'] tracking-wide">
+              Created by
+            </p>
+            <p className="text-3xl md:text-4xl lg:text-5xl text-neutral-900 italic tracking-tight">
+              Austin Carson
+            </p>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center justify-center gap-12 md:gap-20 text-sm font-['Inter']"
+          >
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl text-neutral-900 mb-3">19</div>
+              <div className="text-xs tracking-[0.2em] uppercase text-neutral-500">Variants</div>
+            </div>
+            <div className="w-px h-16 bg-neutral-300" />
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl text-neutral-900 mb-3">100%</div>
+              <div className="text-xs tracking-[0.2em] uppercase text-neutral-500">WCAG AA</div>
+            </div>
+            <div className="w-px h-16 bg-neutral-300" />
+            <div className="text-center">
+              <div className="text-5xl md:text-6xl text-neutral-900 mb-3">120+</div>
+              <div className="text-xs tracking-[0.2em] uppercase text-neutral-500">Tokens</div>
+            </div>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6, duration: 1 }}
+            className="absolute bottom-16 left-1/2 -translate-x-1/2"
+          >
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="flex flex-col items-center gap-4"
             >
-              <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" />
-            </motion.svg>
+              <span className="text-xs tracking-[0.25em] uppercase font-['Inter'] text-neutral-400">Scroll to Explore</span>
+              <ArrowDown className="w-5 h-5 text-neutral-400" />
+            </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Decorative grid overlay */}
-        <div className="absolute inset-0 pointer-events-none opacity-10">
-          <div className="grid grid-cols-12 h-full border-l border-r border-neutral-300">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="border-r border-neutral-300" />
-            ))}
-          </div>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-[0.015]">
+          <svg width="100%" height="100%">
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
         </div>
       </section>
 
       {/* Navigation Bar */}
       <VariantsNav />
 
-      {/* Variant Sections */}
-      <div id="parallax">
-        <Suspense fallback={<LoadingFallback />}>
-          <ParallaxGrid images={images.parallax} />
-        </Suspense>
-      </div>
+      {/* All Variants with Suspense boundaries */}
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="parallax"><ParallaxGrid images={images.parallax} /></div>
+      </Suspense>
 
-      <div id="flip">
-        <Suspense fallback={<LoadingFallback />}>
-          <FlipBook images={images.flip} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="flip"><FlipBook images={images.flip} /></div>
+      </Suspense>
 
-      <div id="slider">
-        <Suspense fallback={<LoadingFallback />}>
-          <SliceSlider image={images.slider} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="slider"><SliceSlider image={images.slider} /></div>
+      </Suspense>
 
-      <div id="color">
-        <Suspense fallback={<LoadingFallback />}>
-          <ColorShift image={images.colorShift} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="color"><ColorShift image={images.colorShift} /></div>
+      </Suspense>
 
-      <div id="sticky">
-        <Suspense fallback={<LoadingFallback />}>
-          <StickyNav images={images.stickyNav} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="sticky"><StickyNav images={images.stickyNav} /></div>
+      </Suspense>
 
-      <div id="path">
-        <Suspense fallback={<LoadingFallback />}>
-          <PathAnimation images={images.path} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="path"><PathAnimation images={images.path} /></div>
+      </Suspense>
 
-      <div id="gradient">
-        <Suspense fallback={<LoadingFallback />}>
-          <ScaleGradient image={images.scaleGradient} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="gradient"><ScaleGradient image={images.scaleGradient} /></div>
+      </Suspense>
 
-      <div id="horizontal">
-        <Suspense fallback={<LoadingFallback />}>
-          <HorizontalSnap images={images.horizontal} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="horizontal"><HorizontalSnap images={images.horizontal} /></div>
+      </Suspense>
 
-      <div id="stacked">
-        <Suspense fallback={<LoadingFallback />}>
-          <StackedCards images={images.stacked} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="stacked"><StackedCards images={images.stacked} /></div>
+      </Suspense>
 
-      <div id="clipPath">
-        <Suspense fallback={<LoadingFallback />}>
-          <ClipPathReveal image={images.clipPath} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="clipPath"><ClipPathReveal image={images.clipPath} /></div>
+      </Suspense>
 
-      <div id="circular">
-        <Suspense fallback={<LoadingFallback />}>
-          <CircularReveal images={images.circular} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="circular"><CircularReveal images={images.circular} /></div>
+      </Suspense>
 
-      <div id="splitScreen">
-        <Suspense fallback={<LoadingFallback />}>
-          <SplitScreen images={images.splitScreen} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="splitScreen"><SplitScreen images={images.splitScreen} /></div>
+      </Suspense>
 
-      <div id="infiniteLoop">
-        <Suspense fallback={<LoadingFallback />}>
-          <InfiniteLoop images={images.infiniteLoop} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="infiniteLoop"><InfiniteLoop images={images.infiniteLoop} /></div>
+      </Suspense>
 
-      <div id="morphingBlob">
-        <Suspense fallback={<LoadingFallback />}>
-          <MorphingBlob image={images.morphingBlob} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="morphingBlob"><MorphingBlob image={images.morphingBlob} /></div>
+      </Suspense>
 
-      <div id="typewriter">
-        <Suspense fallback={<LoadingFallback />}>
-          <TypewriterReveal image={images.typewriter} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="typewriter"><TypewriterReveal image={images.typewriter} /></div>
+      </Suspense>
 
-      <div id="zoomOutGrid">
-        <Suspense fallback={<LoadingFallback />}>
-          <ZoomOutGrid images={images.zoomOutGrid} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="zoomOutGrid"><ZoomOutGrid images={images.zoomOutGrid} /></div>
+      </Suspense>
 
-      <div id="perspectiveCards">
-        <Suspense fallback={<LoadingFallback />}>
-          <PerspectiveCards images={images.perspectiveCards} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="perspectiveCards"><PerspectiveCards images={images.perspectiveCards} /></div>
+      </Suspense>
 
-      <div id="textMask">
-        <Suspense fallback={<LoadingFallback />}>
-          <TextMask image={images.textMask} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="textMask"><TextMask image={images.textMask} /></div>
+      </Suspense>
 
-      <div id="accordion">
-        <Suspense fallback={<LoadingFallback />}>
-          <AccordionReveal images={images.accordion} />
-        </Suspense>
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="accordion"><AccordionReveal images={images.accordion} /></div>
+      </Suspense>
 
       {/* Footer */}
       <Suspense fallback={<LoadingFallback />}>
