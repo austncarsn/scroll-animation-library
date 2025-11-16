@@ -148,10 +148,69 @@ export default function App() {
       
       {/* Hero Section - Completely Redesigned */}
       <section ref={heroRef} className="relative min-h-[140vh] flex items-center justify-center overflow-hidden bg-neutral-50">
+        {/* Black Accent Bar at Top */}
+        <motion.div 
+          className="absolute top-0 left-0 right-0 h-3 bg-neutral-900 z-20"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: 'left' }}
+        />
+
         <motion.div 
           style={{ opacity: heroOpacity, y: heroY }}
           className="relative z-10 text-center px-6 md:px-12 max-w-7xl mx-auto py-32"
         >
+          {/* Editorial Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-8"
+          >
+            <div className="flex items-center justify-center gap-6 md:gap-8">
+              {/* Left decorative line */}
+              <motion.div 
+                className="h-px bg-neutral-900 flex-1 max-w-[120px] md:max-w-[200px]"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'right' }}
+              />
+              
+              {/* Center banner content */}
+              <div className="relative">
+                {/* Background accent */}
+                <motion.div 
+                  className="absolute inset-0 bg-neutral-900"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                />
+                
+                {/* Text content */}
+                <div className="relative px-8 py-3 md:px-12 md:py-4">
+                  <div className="text-[10px] md:text-xs tracking-[0.4em] uppercase font-['Inter'] text-white mb-1">
+                    2025 Collection
+                  </div>
+                  <div className="h-px bg-white/20 mb-1" />
+                  <div className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase font-['Inter'] text-white/60">
+                    Design Systems & Animation
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right decorative line */}
+              <motion.div 
+                className="h-px bg-neutral-900 flex-1 max-w-[120px] md:max-w-[200px]"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: 'left' }}
+              />
+            </div>
+          </motion.div>
+
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
